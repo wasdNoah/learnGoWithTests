@@ -4,32 +4,41 @@ import (
 	"fmt"
 )
 
-// type owner struct {
-// 	name string
-// 	age  uint8
-// }
+const (
+	englishHelloPrefix  = "Hello, "
+	spanishHelloPrefix  = "Hola, "
+	frenchHelloPrefix   = "Bonjour, "
+	japaneseHelloPrefix = "Konichiwa, "
 
-// type mascota struct {
-// 	name string
-// 	owner
-// }
+	japanese    = "Japanese"
+	spanish     = "Spanish"
+	french      = "French"
+	defaultName = "World"
+)
 
-// func main() {
-// 	perro := mascota{
-// 		owner: owner{
-// 			name: "Noah",
-// 			age:  24,
-// 		},
-// 		name: "Pochi",
-// 	}
+func Hello(name, language string) string {
+	if name == "" {
+		name = defaultName
+	}
 
-// 	fmt.Println(perro.name)
-// }
+	return greetingPrefix(language) + name
+}
 
-func Hello(name string) string {
-	return "Hello, " + name
+func greetingPrefix(language string) (prefix string) {
+	switch language {
+	case french:
+		prefix = frenchHelloPrefix
+	case spanish:
+		prefix = spanishHelloPrefix
+	case japanese:
+		prefix = japaneseHelloPrefix
+	default:
+		prefix = englishHelloPrefix
+	}
+
+	return
 }
 
 func main() {
-	fmt.Println(Hello("world"))
+	fmt.Println(Hello("world", ""))
 }
